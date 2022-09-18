@@ -1,0 +1,57 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+
+
+            <h4 class="text-center my-3 pb-3">To Do App</h4>
+            
+            <form method="post" class="row row-cols-lg-auto g-3 justify-content-center align-items-center mb-4 pb-2">
+              {% csrf_token %}
+              
+              <div class="col-12">
+                <div class="form-outline">
+                  <input type="text" name="nome" maxlength="36" class="form-control" placeholder="Nome" required id="id_nome">
+                </div>
+              </div>
+
+              <div class="col-12">
+                <button type="submit" class="btn btn-primary">Adicionar
+                </button>
+              </form>
+                
+              </div>
+
+              <ul class="nav ">
+                <li class="nav-item">
+                  <a class="nav-link active" href="#">Ativos</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Concluidos</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Todos</a>
+                </li>
+              </ul>
+
+            <table class="table mb-4">
+              
+              <thead>
+                <tr>
+                  <th scope="col">Todo item</th>
+                  <th scope="col">Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for todo in todos %}
+                <tr>
+                  <td>{{ todo.nome }}</td>
+                  <td>
+                    <a class="btn btn-success ms-1">Finalizar</a>
+                    <a class="btn btn-danger" href="{% url 'del_todo' todo.pk %}" >Excluir</a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+
+          
+
+{% endblock content %}
