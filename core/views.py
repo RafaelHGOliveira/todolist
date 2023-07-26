@@ -10,7 +10,6 @@ class IndexView(CreateView, ListView):
     template_name = 'index.html'
     queryset = Todo.objects.all().order_by('id')
     context_object_name = 'todos'
-
     fields = ['nome']
     success_url = reverse_lazy('index')
     
